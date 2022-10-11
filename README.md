@@ -33,8 +33,6 @@ truncated.
 `config.h` is provided to allow you to change this behavior for any `inotify`
 file event.
 
-`config.h`:
-
 ```c
 struct action {
     uint32_t imask;
@@ -65,8 +63,8 @@ file `/usr/include/sys/inotify.h`:
 #define IN_MOVE_SELF	 0x00000800	/* Self was moved.  */
 ```
 
-This is what you'd do if, for example, you wanted `fmon` to print something
-whenever it detected a file closed:
+If, for example, you wanted `fmon` to print to standard output whenever it
+detects a file has closed, this is all you'd need to do:
 
 ```c
 /* handles.h */
@@ -92,4 +90,4 @@ struct action {
 };
 ```
 
- (Re)compile and (re)install with `sudo make install`.
+ Recompile and reinstall with `sudo make install`.
