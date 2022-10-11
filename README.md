@@ -31,7 +31,7 @@ like `tail -f`, with the exception that nothing is done when a file has been
 truncated.
 
 `config.h` is provided to allow you to change this behavior for any `inotify`
-event through an array of `struct action` structures:
+event through a `struct action` array:
 
 ```c
 struct action {
