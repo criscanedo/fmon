@@ -9,3 +9,15 @@ fmon \- simple file monitor
 .B fmon
 (file monitor) is a small C program intended to make easy calling your
 own custom code whenever file events are detected.
+.SH Customization
+.B fmon
+can be customized by editing config.h and (re)compiling the source code. This
+keeps it fast, secure, and simple.
+.P
+By default, fmon will monitor files for modification and print their new data
+to standard output, much like
+.BR tail (1)
+.B -f,
+with the exception that nothing is done when a file has been truncated.
+.P
+Refer to the repository README for a quick configuration example.
