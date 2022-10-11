@@ -12,16 +12,16 @@ A computer running Linux.
 Installation
 ------------
 
-	git clone https://github.com/criscanedo/fmon
-	cd fmon
-	sudo make install
+    git clone https://github.com/criscanedo/fmon
+    cd fmon
+    sudo make install
 
 Running fmon
 ------------
 
 Simply invoke `fmon` with the files you want to monitor.
 
-	fmon ~/irc/20221010.log
+    fmon ~/irc/20221010.log
 
 Configuration
 -------------
@@ -54,18 +54,18 @@ void itclosed(struct file_info *info);
 /* handles.c */
 void itclosed(struct file_info *info)
 {
-	printf("%s was closed.\n", info->pathname);
+    printf("%s was closed.\n", info->pathname);
 }
 ```
 
 ```c
 /* config.h */
 struct action {
-	uint32_t imask;
-	void (*handle)(struct file_info *):
+    uint32_t imask;
+    void (*handle)(struct file_info *):
 } actions[] = {
-	{ IN_MODIFY, printline }
-	{ IN_CLOSE, itclosed }
+    { IN_MODIFY, printline }
+    { IN_CLOSE, itclosed }
 };
 ```
 
