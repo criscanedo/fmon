@@ -1,8 +1,8 @@
 fmon
 ====
 
-fmon (file monitor) is a small C program intended to make easy calling your
-own custom code whenever file events are detected.
+fmon (file monitor) is a small C program intended to make easy running your own
+custom C code whenever file events are detected.
 
 Requirements
 ------------
@@ -12,8 +12,8 @@ A computer running Linux.
 Installation
 ------------
 
-	git clone https://github.com/ccanedo/fmon
-	cd ./fmon
+	git clone https://github.com/criscanedo/fmon
+	cd fmon
 	sudo make install
 
 Running fmon
@@ -26,25 +26,26 @@ Simply invoke `fmon` with the files you want to monitor.
 Configuration
 -------------
 
-You may add additional inotify events to run code for when monitoring files
-by simply adding another `struct action` entry in the `actions` array
-defined in `config.h`.
+By default `fmon` prints new lines from a file after it's been modified much
+like `tail -f`, with the exception that nothing is done when a file has been
+truncated.
 
-By default `fmon` simply prints new data from a file after it's been
-modified. It mimics `tail -f` with the exception that nothing is done when
-a file has been truncated.
+`config.h` is provided to allow you to change this behavior for any `inotify`
+file event.
+
+`config.h`:
 
 ```c
 struct action {
-	uint32_t imask;
-	void (*handle)(struct file_info *):
+    uint32_t imask;
+    void (*handle)(struct file_info *):
 } actions[] = {
-	{ IN_MODIFY, printlines }
+    { IN_MODIFY, printlines } /* call printlines when a file is modified */
 };
 ```
 
-A list of inotify events can be found in the inotify man page or the header
-file `/usr/include/sys/inotify.h` which contains the following code:
+A list of inotify events can be found in the `inotify(7)` man page or its header
+file `/usr/include/sys/inotify.h`:
 
 ```c
 /* Supported events suitable for MASK parameter of INOTIFY_ADD_WATCH.  */
@@ -64,10 +65,8 @@ file `/usr/include/sys/inotify.h` which contains the following code:
 #define IN_MOVE_SELF	 0x00000800	/* Self was moved.  */
 ```
 
-#### Configuration Example
-
-If you wanted to do something after a file was closed you would define a
-function with whatever it is you want to do, for instance:
+This is what you'd do if, for example, you wanted `fmon` to print something
+whenever it detected a file closed:
 
 ```c
 /* handles.h */
@@ -82,9 +81,6 @@ void itclosed(struct file_info *info)
 }
 ```
 
-Then just add a new entry in `actions` to call `itclosed` whenever the
-`IN_CLOSE` inotify event is detected:
-
 ```c
 /* config.h */
 struct action {
@@ -96,4 +92,4 @@ struct action {
 };
 ```
 
-Simply re-compile and re-install with `sudo make install`.
+ (Re)compile and (re)install with `sudo make install`.
