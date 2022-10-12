@@ -4,15 +4,13 @@
 #include <errno.h>
 #include <string.h>
 #include <poll.h>
-#include <sys/stat.h>
 #include <unistd.h>
 #include "util.h"
 #include "handles.h"
 #include "config.h"
 
-
 int nfiles = 0;                 /* Number of files to monitor */
-int nready = 0;                 /* Number of poll events ready */
+int nready = 0;                 /* Number of poll fds ready */
 int ifd = -1;                   /* inotify instance file descriptor */
 int *wd = NULL;                 /* Buffer containing inotify watch descriptors */
 struct pollfd fds[1];           /* Only polling the inotify instance fd */
