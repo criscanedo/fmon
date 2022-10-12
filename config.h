@@ -10,4 +10,4 @@ struct action {
     { IN_MODIFY, printlines },
 };
 
-#endif //CONFIG_H
+#endif

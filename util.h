@@ -9,4 +9,5 @@
 void die(const char *fmt, ...);
 int cmpint(const void *lhs, const void *rhs);
 int indexof(const int *key, const int *base, size_t nmemb);
-#endif //UTIL_H
+
+#endif

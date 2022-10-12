@@ -11,4 +11,4 @@ struct file_info {
 void setinfo(struct file_info *info, const char *pathname, size_t len);
 void printlines(struct file_info *info);
 
-#endif //HANDLES_H
+#endif
