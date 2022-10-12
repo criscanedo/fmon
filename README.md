@@ -93,3 +93,4 @@ file `/usr/include/sys/inotify.h`:
 #define IN_DELETE_SELF	 0x00000400	/* Self was deleted.  */
 #define IN_MOVE_SELF	 0x00000800	/* Self was moved.  */
 ```
+test
